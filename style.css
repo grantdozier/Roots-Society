@@ -7,8 +7,13 @@
   --border:  #222220;
   --gold:    #c8a96e;
   --cream:   #ede8de;
-  --muted:   #555550;
+  --muted:   #8a847a;
   --body:    #b0aa9e;
+}
+
+::selection {
+  background: rgba(200, 169, 110, 0.28);
+  color: var(--cream);
 }
 
 *, *::before, *::after {
@@ -69,6 +74,8 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background:
+    radial-gradient(55% 45% at 22% 28%, rgba(200, 169, 110, 0.05), transparent 70%);
 }
 
 /* ============================================================
@@ -91,7 +98,7 @@ main {
 
 h1 {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(4rem, 10vw, 8rem);
+  font-size: clamp(2.75rem, 0.5rem + 10.5vw, 8rem);
   font-weight: 300;
   line-height: 1;
   color: var(--cream);
@@ -141,6 +148,7 @@ h1 {
   align-items: stretch;
   padding: 4rem 3rem 6rem;
   gap: 0;
+  max-width: 1200px;
 }
 
 .pillar {
@@ -154,6 +162,8 @@ h1 {
 
 .pillar-label {
   display: block;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 400;
   font-size: 0.6rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
@@ -204,6 +214,45 @@ footer {
 }
 
 /* ============================================================
+   ENTRANCE
+   ============================================================ */
+
+@media (prefers-reduced-motion: no-preference) {
+  .eyebrow,
+  h1,
+  .descriptor,
+  .pillar {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  h1 { animation-delay: 0.12s; }
+  .descriptor { animation-delay: 0.24s; }
+
+  .rule-block,
+  .pillar-divider {
+    opacity: 0;
+    animation: fade 1.2s ease 0.45s forwards;
+  }
+
+  .pillars .pillar:nth-child(1) { animation-delay: 0.5s; }
+  .pillars .pillar:nth-child(3) { animation-delay: 0.62s; }
+  .pillars .pillar:nth-child(5) { animation-delay: 0.74s; }
+}
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade {
+  to { opacity: 1; }
+}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 
@@ -221,8 +270,9 @@ footer {
   }
 
   .rule-text {
-    font-size: 0.55rem;
     letter-spacing: 0.12em;
+    white-space: normal;
+    text-align: center;
   }
 
   .pillars {
