@@ -28,10 +28,18 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      # Stage only public site files — README.md holds internal brand copy
+      # and must not be served on the live site.
+      - name: Stage site files
+        run: |
+          mkdir _site
+          cp index.html 404.html style.css fonts.css favicon.svg favicon-32.png apple-touch-icon.png robots.txt og-image.png _site/
+          cp -r fonts _site/fonts
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment

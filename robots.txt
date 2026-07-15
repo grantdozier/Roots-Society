@@ -1,0 +1,5 @@
+# Note: not consulted by crawlers while served from the github.io project
+# subpath (robots.txt only works at a host root); becomes active once the
+# roots.la custom domain is live.
+User-agent: *
+Allow: /
